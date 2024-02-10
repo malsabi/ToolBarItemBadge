@@ -13,8 +13,7 @@
                                TitleFontSize="25"
                                TitleHorizontalOptions="Start"
                                TitleVerticalOptions="Center"
-                               TitleMargin="14, 0, 0, 0"
-                               Background="Transparent">
+                               TitleMargin="14, 0, 0, 0">
 
             <customControls:TabBar.ToolBarItems>
                 <customControls:ToolBarItem Text="{OnIdiom Desktop='Filter'}"

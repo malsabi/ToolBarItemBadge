@@ -4,7 +4,6 @@ namespace ToolBarItemBadge.CustomControls;
 
 public partial class TabBar : Grid
 {
-    #region Bindable Properties
     public static readonly BindableProperty ToolBarItemsProperty = BindableProperty.Create(nameof(ToolBarItems), typeof(ObservableCollection<ToolBarItem>), typeof(TabBar), defaultValue: new ObservableCollection<ToolBarItem>());
     public ObservableCollection<ToolBarItem> ToolBarItems
     {
@@ -53,7 +52,6 @@ public partial class TabBar : Grid
         get => (LayoutOptions)GetValue(TitleVerticalOptionsProperty);
         set => SetValue(TitleVerticalOptionsProperty, value);
     }
-    #endregion
 
     public TabBar()
 	{
