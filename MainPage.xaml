@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:ToolBarItemBadge.CustomControls"
+             xmlns:m="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
+             x:Class="ToolBarItemBadge.MainPage"
+             x:Name="this"
+             Title="MainPage">
+
+    <Shell.TitleView>
+        <customControls:TabBar Title="Assessments"
+                               TitleColor="White"
+                               TitleFontSize="25"
+                               TitleHorizontalOptions="Start"
+                               TitleVerticalOptions="Center"
+                               TitleMargin="14, 0, 0, 0"
+                               Background="Transparent">
+
+            <customControls:TabBar.ToolBarItems>
+                <customControls:ToolBarItem Text="{OnIdiom Desktop='Filter'}"
+                                            TextColor="White"
+                                            TextFontSize="15"
+                                            Icon="{FontImageSource Glyph={x:Static m:MaterialRegular.Sort},
+                                                                   FontFamily=MaterialRegular,
+                                                                   Color={AppThemeBinding Light={StaticResource Black},
+                                                                                          Dark={StaticResource White}}}"
+                                            BadgeValue="2"
+                                            BadgeTextColor="White"
+                                            BadgeBackground="Orange"
+                                            BadgeStrokeColor="White"
+                                            Command="{Binding FilterCommand, Source={x:Reference this}}" />
+
+                <customControls:ToolBarItem Text="{OnIdiom Desktop='Settings'}"
+                                            TextColor="White"
+                                            TextFontSize="15"
+                                            Icon="{FontImageSource Glyph={x:Static m:MaterialRegular.Settings},
+                                                                   FontFamily=MaterialRegular,
+                                                                   Color={AppThemeBinding Light={StaticResource Black},
+                                                                                          Dark={StaticResource White}}}"
+                                            BadgeValue="20"
+                                            BadgeTextColor="White"
+                                            BadgeBackground="Orange"
+                                            BadgeStrokeColor="White"
+                                            Command="{Binding SettingsCommand, Source={x:Reference this}}" />
+
+                <customControls:ToolBarItem Text="{OnIdiom Desktop='Profile'}"
+                                            TextColor="White"
+                                            TextFontSize="15"
+                                            Icon="{FontImageSource Glyph={x:Static m:MaterialRegular.Person},
+                                                                   FontFamily=MaterialRegular,
+                                                                   Color={AppThemeBinding Light={StaticResource Black},
+                                                                                          Dark={StaticResource White}}}"
+                                            BadgeValue="200"
+                                            BadgeTextColor="White"
+                                            BadgeBackground="Orange"
+                                            BadgeStrokeColor="White"
+                                            Command="{Binding ProfileCommand, Source={x:Reference this}}" />
+
+                <customControls:ToolBarItem Text="{OnIdiom Desktop='Logout'}"
+                                            TextColor="White"
+                                            TextFontSize="15"
+                                            Icon="{FontImageSource Glyph={x:Static m:MaterialRegular.Logout},
+                                                                   FontFamily=MaterialRegular,
+                                                                   Color={AppThemeBinding Light={StaticResource Black},
+                                                                                          Dark={StaticResource White}}}"
+                                            BadgeValue="2000"
+                                            BadgeTextColor="White"
+                                            BadgeBackground="Orange"
+                                            BadgeStrokeColor="White"
+                                            Command="{Binding LogoutCommand, Source={x:Reference this}}" />
+            </customControls:TabBar.ToolBarItems>
+        </customControls:TabBar>
+    </Shell.TitleView>
+</ContentPage>

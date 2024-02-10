@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:customControls="clr-namespace:ToolBarItemBadge.CustomControls"
+      xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+      x:Class="ToolBarItemBadge.CustomControls.TabBar"
+      x:Name="this"
+      ColumnDefinitions="*, Auto">
+
+    <Grid.Resources>
+        <ResourceDictionary>
+            <toolkit:IsStringNotNullOrEmptyConverter x:Key="IsStringNotNullOrEmptyConverter" />
+        </ResourceDictionary>
+    </Grid.Resources>
+
+    <!--  Title  -->
+    <Label x:Name="TitleLabel"
+           Grid.Column="0"
+           Text="{Binding Title, Source={x:Reference this}}"
+           TextColor="{Binding TitleColor, Source={x:Reference this}}"
+           FontSize="{Binding TitleFontSize, Source={x:Reference this}}"
+           HorizontalOptions="{Binding TitleHorizontalOptions, Source={x:Reference this}}"
+           VerticalOptions="{Binding TitleVerticalOptions, Source={x:Reference this}}"
+           Margin="{Binding TitleMargin, Source={x:Reference this}}" />
+
+    <!--  Tool Bar Items  -->
+    <StackLayout x:Name="ToolBarItemStackLayout"
+                 Grid.Column="1"
+                 BindableLayout.ItemsSource="{Binding ToolBarItems, Source={x:Reference this}}"
+                 Orientation="Horizontal"
+                 Spacing="5"
+                 HorizontalOptions="Fill"
+                 VerticalOptions="Fill">
+
+        <BindableLayout.ItemTemplate>
+            <DataTemplate x:DataType="customControls:ToolBarItem">
+                <Grid ColumnDefinitions="Auto, Auto, Auto"
+                      BackgroundColor="Transparent">
+                    <!--  Icon  -->
+                    <Image Grid.Column="0"
+                           Source="{Binding Icon}"
+                           WidthRequest="20"
+                           HeightRequest="20"
+                           Aspect="AspectFill"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Center" />
+
+                    <!--  Badge Below Icon  -->
+                    <Border Grid.Column="1"
+                            StrokeThickness="1"
+                            Stroke="{Binding BadgeStrokeColor}"
+                            Background="{Binding BadgeBackground}"
+                            IsVisible="{Binding BadgeValue, Converter={StaticResource IsStringNotNullOrEmptyConverter}}"
+                            Padding="3"
+                            Margin="-12,2,0,0"
+                            HorizontalOptions="End"
+                            VerticalOptions="Start"
+                            MinimumHeightRequest="18"
+                            MinimumWidthRequest="18">
+
+                        <Border.StrokeShape>
+                            <Ellipse />
+                        </Border.StrokeShape>
+
+                        <Label Text="{Binding BadgeValue}"
+                               TextColor="{Binding BadgeTextColor}"
+                               FontSize="11"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Border>
+
+                    <!--  Text  -->
+                    <Label x:Name="TitleLabel"
+                           Grid.Column="2"
+                           Text="{Binding Text}"
+                           TextColor="{Binding TextColor}"
+                           FontSize="{Binding TextFontSize}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           IsVisible="{Binding Text, Converter={StaticResource IsStringNotNullOrEmptyConverter}}" />
+
+                    <!--  Click/Tab Command  -->
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Command}" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+            </DataTemplate>
+        </BindableLayout.ItemTemplate>
+    </StackLayout>
+</Grid>
